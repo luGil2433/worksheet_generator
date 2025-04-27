@@ -162,17 +162,19 @@ Create {num_questions} questions about {subject} about this topic {topic_focus} 
 RULES:
 - ONLY output clean \\item entries in LaTeX enumerate format.
 - Every math/science/technical expression must be wrapped inside inline math mode using \\( ... \\) if applicable.
-- Avoid Unicode symbols like √, ∫, etc. Always use LaTeX syntax (\sqrt{{}}, \int, etc.).
+- Avoid Unicode symbols like √, ∫, etc. Always use LaTeX syntax (\\sqrt{{}}, \\int, etc.).
 - Never nest \\( \\( ... \\) \\).
+- If writing fractions, always use \\frac{{numerator}}{{denominator}} format, not (numerator)/(denominator).
 - Do NOT write explanations or extra sentences outside the questions.
 
 Example output format:
 
-\\item What is the capital of France?
-\\item Solve for \\( x \\) in \\( 2x + 5 = 15 \\)
+\\item Solve for \\( x \\) in \\( \\frac{{x^2 - 4}}{{x - 2}} = 2 \\)
+\\item Find the derivative of \\( f(x) = 3x^2 + 5x - 7 \\)
 \\item Name two causes of the American Revolution.
 
 ONLY output the list of \\item entries.
+
 """
     return prompt
 

@@ -25,7 +25,13 @@ def super_fix_latex(text):
     if buffer:
         lines.append(buffer.strip())
 
-    fixed_text = "\n".join(lines)
+    # After each item, add vertical space
+    fixed_lines = []
+    for line in lines:
+        fixed_lines.append(line)
+        fixed_lines.append(r"\vspace{2cm}")  # Add 2cm of space after each question
+
+    fixed_text = "\n".join(fixed_lines)
 
     # Replace Unicode characters
     replacements = {
@@ -43,7 +49,16 @@ def super_fix_latex(text):
 
     return fixed_text
 
+
+import re
+
 def clean_llm_output(text):
-    """Additional basic cleaning if needed."""
-    text = text.replace("\\(", "$").replace("\\)", "$")  # Use $...$ for inline math
+    """Clean LLM output by removing any intro before first \item and fixing inline math."""
+    # Find first \item
+    first_item_index = text.find(r"\item")
+    if first_item_index != -1:
+        text = text[first_item_index:]  # Keep only from first \item onward
+
+    text = text.replace("\\(", "$").replace("\\)", "$")
     return text
+
