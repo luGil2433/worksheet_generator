@@ -59,6 +59,7 @@ def clean_llm_output(text):
     if first_item_index != -1:
         text = text[first_item_index:]  # Keep only from first \item onward
 
+
     text = text.replace("\\(", "$").replace("\\)", "$")
     return text
 

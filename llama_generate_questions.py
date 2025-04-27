@@ -1,24 +1,32 @@
 import subprocess
 import shutil
 
+
+question = r"{e^{2x}};"
+
 # Check if Ollama is installed
 if not shutil.which("ollama"):
     raise EnvironmentError("Ollama is not installed. Please install from https://ollama.com")
 
 # Generate questions safely for LaTeX
-def generate_questions_with_llm(subject, grade, num_questions, difficulty, topic_focus=None):
+def generate_questions_with_llm(subject, grade, num_questions, difficulty, graphs,topic_focus=None):
     # Define difficulty-specific instructions depending on the subject
     general_easy = """
 Focus on basic recall, simple definitions, or basic problem-solving.
 Avoid multi-step logic, and keep questions straightforward.
+Real graphs, plots, tables or diagrams drawn using LaTeX should be simple and easy to interpret.
 """
     general_medium = """
 Focus on applying concepts, basic reasoning, and short questions.
-Include simple multi-step problems or minor critical thinking.
+Include simple multi-step problems or minor critical thinking. 
+Real graphs, plots, tables or diagrams drawn using LaTeX should contain some interpretation 
+and some level of complexity.
 """
     general_hard = """
 Focus on complex reasoning, multi-step problems, proofs, or advanced questions.
 Encourage critical thinking, analysis, and synthesis of ideas.
+Real graphs, plots, tables or diagrams drawn using LaTeX should be complex and required reasoning 
+and deep understanding of the topic in question.
 """
 
     subject_instructions = {
@@ -158,6 +166,8 @@ You are an educational worksheet generator.
 Create {num_questions} questions about {subject} about this topic {topic_focus} for grade {grade} students at {difficulty} difficulty level.
 
 {difficulty_instructions}
+If possible, include a maximum of {graphs} questions that show real graphs, plots, tables or diagrams drawn using LaTeX pgfplots.
+
 
 RULES:
 - ONLY output clean \\item entries in LaTeX enumerate format.
@@ -165,13 +175,32 @@ RULES:
 - Avoid Unicode symbols like √, ∫, etc. Always use LaTeX syntax (\\sqrt{{}}, \\int, etc.).
 - Never nest \\( \\( ... \\) \\).
 - If writing fractions, always use \\frac{{numerator}}{{denominator}} format, not (numerator)/(denominator).
-- Do NOT write explanations or extra sentences outside the questions.
+- Do NOT include introductions, summaries, or extra explanations.
+- ONLY output the list of \\item entries.
+
 
 Example output format:
 
 \\item Solve for \\( x \\) in \\( \\frac{{x^2 - 4}}{{x - 2}} = 2 \\)
 \\item Find the derivative of \\( f(x) = 3x^2 + 5x - 7 \\)
 \\item Name two causes of the American Revolution.
+\\item Sketch the graph of \\( y = \\sin(x) \\) from \\( 0 \\) to \\( 2\\pi \\).
+\\item based on the graph bellow identify the y-intercept of the function.:
+
+\\begin{{tikzpicture}}
+\\begin{{axis}}[
+    axis lines = center,
+    xlabel = \\( x \\),
+    ylabel = \\( y \\),
+]
+\\addplot [
+    domain=-10:10, 
+    samples=15, 
+    color=blue,
+]
+{question};
+\\end{{axis}}
+\\end{{tikzpicture}}
 
 ONLY output the list of \\item entries.
 

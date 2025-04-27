@@ -17,17 +17,18 @@ def main():
     print("Starting the script...")
 
     # ==== User Inputs ====
-    subject = "Math"  # or "Mathematics", "Physics", etc.
-    grade = "12"
+    subject = "AP English Literature"
+    grade = "9"
     num_questions = 5
     difficulty = "hard"
     worksheet_title = "math worksheet"
     instructions_text = "Answer the following questions carefully."
-    topic_focus = "Limits: Graphically and Numerically"
+    topic_focus = "Great Expectations; Jane Eyre"  
+    graphs = 0  # Number of questions with graphs or diagrams
 
     # ==== Generate Questions ====
     print("Generating questions...")
-    prompt = generate_questions_with_llm(subject, grade, num_questions, difficulty, topic_focus=topic_focus)
+    prompt = generate_questions_with_llm(subject, grade, num_questions, difficulty,graphs, topic_focus=topic_focus,)
 
     # Run the LLM
     import subprocess
