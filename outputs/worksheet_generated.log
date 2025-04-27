@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  27 APR 2025 16:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  27 APR 2025 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,48 +865,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-[2]
-
-[3]
-
-[4]
-
-[5]
-
-[6]
-
-[7]
-! You can't use `macro parameter character #' in horizontal mode.
-l.43 ...rn-day social justice movements, such as #
-                                                  MeToo and Black Lives Matt...
-
-? 
-
-
-[8] (outputs/worksheet_generated.aux)
+[2] (outputs/worksheet_generated.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 26674 strings out of 473190
- 672443 string characters out of 5715801
- 1162134 words of memory out of 5000000
- 49501 multiletter control sequences out of 15000+600000
+ 26141 strings out of 473190
+ 657793 string characters out of 5715801
+ 1161134 words of memory out of 5000000
+ 48968 multiletter control sequences out of 15000+600000
  562095 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,91p,6039b,2090s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,5n,91p,2528b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on outputs/worksheet_generated.pdf (8 pages, 90543 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on outputs/worksheet_generated.pdf (2 pages, 55975 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 34 PDF objects out of 1000 (max. 8388607)
+ 21 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

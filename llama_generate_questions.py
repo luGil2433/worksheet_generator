@@ -2,8 +2,6 @@ import subprocess
 import shutil
 
 
-question = r"{e^{2x}};"
-
 # Check if Ollama is installed
 if not shutil.which("ollama"):
     raise EnvironmentError("Ollama is not installed. Please install from https://ollama.com")
@@ -119,7 +117,8 @@ Focus on simple recall:
             "medium": """
 Focus on cause and effect:
 - Short paragraph explanations
-- Matching events to outcomes
+- Matching events to outcomes in a tables format
+
 """,
             "hard": """
 Focus on analysis:
@@ -130,7 +129,7 @@ Focus on analysis:
         "English": {
             "easy": """
 Focus on simple exercises:
-- Vocabulary matching
+- Vocabulary matching utilizing a table format
 - Fill-in-the-blank grammar
 - Short sentence correction
 """,
@@ -178,32 +177,60 @@ RULES:
 - Do NOT include introductions, summaries, or extra explanations.
 - ONLY output the list of \\item entries.
 
+EXAMPLES:
 
-Example output format:
+\\item Solve for \\( x \\) in \\( \\frac{{x^2 - 4}}{{x - 2}} = 2 \\).
 
-\\item Solve for \\( x \\) in \\( \\frac{{x^2 - 4}}{{x - 2}} = 2 \\)
-\\item Find the derivative of \\( f(x) = 3x^2 + 5x - 7 \\)
-\\item Name two causes of the American Revolution.
+\\item Find the derivative of \\( f(x) = 3x^2 + 5x - 7 \\).
+
 \\item Sketch the graph of \\( y = \\sin(x) \\) from \\( 0 \\) to \\( 2\\pi \\).
-\\item based on the graph bellow identify the y-intercept of the function.:
 
-\\begin{{tikzpicture}}
-\\begin{{axis}}[
-    axis lines = center,
-    xlabel = \\( x \\),
-    ylabel = \\( y \\),
-]
-\\addplot [
-    domain=-10:10, 
-    samples=15, 
-    color=blue,
-]
-{question};
-\\end{{axis}}
-\\end{{tikzpicture}}
+\\item Given the table below, determine the median value:
+
+\\[
+\\begin{{array}}{{|c|c|c|}}
+\\hline
+Value & Frequency \\\\
+\\hline
+2 & 3 \\\\
+4 & 5 \\\\
+6 & 2 \\\\
+8 & 1 \\\\
+\\hline
+\\end{{array}}
+\\]
+
+\\item Read the following excerpt and identify two literary devices used.
+
+\\item Compare the causes of the American Revolution and the French Revolution in a short paragraph.
+
+\\item Plot the scatter diagram of the following points and find the line of best fit:
+
+\\[
+(1,2), (2,3), (3,5), (4,7)
+\\]
+
+\item Plot the scatter plot of the points: (1,2), (2,3), (3,5), (4,7).
+
+\item Balance the chemical reaction: \( \text{{C}}_3\text{{H}}_8 + \text{{O}}_2 \rightarrow \text{{CO}}_2 + \text{{H}}_2\text{{O}} \).
+
+\item Given a bar graph showing monthly sales of Products A, B, C, identify the month with the highest sales for Product B.
+
+\item Read the following passage and identify the tone used by the author.
+
+\item Write a short essay discussing the influence of the Enlightenment on modern political systems.
+
+\item Sketch the graph of \( y = \sqrt{{x}} \) between \( 0 \) and \( 4 \).
+
+\item Using the timeline, order the events of the American Revolution.
+
+\item A car starts from rest and accelerates uniformly at \( 2 \, \text{{m/s}}^2 \). Find its velocity after \( 5 \) seconds.
+
+\item Analyze the following graph of \( y = e^{{-x^2}} \) and determine at which points the function changes concavity.
+
+\item Given the table of GDP growth rates by country, calculate the average growth rate.
 
 ONLY output the list of \\item entries.
-
 """
     return prompt
 
