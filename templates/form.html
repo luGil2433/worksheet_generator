@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet Generator</title>
+  <style>
+    /* Reset some basic styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+      color: #333;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4CAF50;
+      font-size: 28px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    input, select {
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 16px;
+      padding: 12px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Worksheet Generator</h1>
+    <form action="/" method="post">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required>
+
+      <label for="grade">Grade</label>
+      <input type="text" id="grade" name="grade" required>
+
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty" name="difficulty" required>
+        <option value="" disabled selected>Select difficulty</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label for="num_questions">Number of Questions</label>
+      <input type="number" id="num_questions" name="num_questions" min="1" required>
+
+      <label for="topic_focus">Topic Focus</label>
+      <input type="text" id="topic_focus" name="topic_focus">
+
+      <label for="graphs">Number of Graphs</label>
+      <input type="number" id="graphs" name="graphs" min="0" required>
+
+      <input type="submit" value="Generate Worksheet">
+    </form>
+  </div>
+
+</body>
+</html>

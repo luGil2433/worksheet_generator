@@ -2,6 +2,7 @@ from llama_generate_questions import generate_questions_with_llm
 from compile_latex import compile_latex_to_pdf
 from validate_latex import contains_unicode_math, super_fix_latex, clean_llm_output
 import os
+import subprocess
 
 def load_template():
     with open('templates/base_template.tex', 'r') as f:
@@ -13,25 +14,16 @@ def fill_template(template, title, instructions, questions_latex):
     template = template.replace('{{questions}}', questions_latex)
     return template
 
-def main():
-    print("Starting the script...")
+def generate_worksheet(subject, grade, difficulty, num_questions, topic_focus, graphs):
+    print("Generating worksheet...")
 
-    # ==== User Inputs ====
-    subject = "AP English Literature"
-    grade = "9"
-    num_questions = 5
-    difficulty = "hard"
-    worksheet_title = "math worksheet"
+    worksheet_title = f"{subject} Worksheet"
     instructions_text = "Answer the following questions carefully."
-    topic_focus = "Great Expectations; Jane Eyre"  
-    graphs = 0  # Number of questions with graphs or diagrams
 
-    # ==== Generate Questions ====
-    print("Generating questions...")
-    prompt = generate_questions_with_llm(subject, grade, num_questions, difficulty,graphs, topic_focus=topic_focus,)
+    # Generate prompt
+    prompt = generate_questions_with_llm(subject, grade, num_questions, difficulty, graphs, topic_focus=topic_focus)
 
-    # Run the LLM
-    import subprocess
+    # Run LLM
     try:
         result = subprocess.run(
             ['ollama', 'run', 'llama3'],
@@ -43,42 +35,33 @@ def main():
         questions_latex = result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error running LLM: {e}")
-        return
+        return None
 
     if not questions_latex:
         print("No questions generated. Exiting.")
-        return
+        return None
 
-    # ==== Fix Output ====
-    # Step 1: Fix Unicode / Math problems
+    # Fix LaTeX
     questions_latex = super_fix_latex(questions_latex)
-
-    # Step 2: Remove any intro sentences before the first \item
     questions_latex = clean_llm_output(questions_latex)
 
-    # ==== Check for Unicode Problems ====
     if contains_unicode_math(questions_latex):
-        print("⚠️ Warning: Unicode math detected after fixing.")
+        print("Unicode math detected after fixing.")
         print(questions_latex)
-        return
+        return None
 
-    # ==== Fill Template ====
-    print("Loading template...")
+    # Fill template
     template = load_template()
-    print("Filling template...")
     final_latex = fill_template(template, worksheet_title, instructions_text, questions_latex)
 
-    # ==== Save and Compile ====
+    # Save and compile
     os.makedirs('outputs', exist_ok=True)
     tex_filename = os.path.join('outputs', 'worksheet_generated.tex')
+    pdf_filename = os.path.join('outputs', 'worksheet_generated.pdf')
 
-    print("Saving .tex file...")
     with open(tex_filename, 'w') as f:
         f.write(final_latex)
 
-    print("Compiling to PDF...")
     compile_latex_to_pdf(tex_filename)
-    print("Done!")
 
-if __name__ == "__main__":
-    main()
+    return pdf_filename

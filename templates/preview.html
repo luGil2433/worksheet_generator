@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worksheet Preview</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { text-align: center; color: #4CAF50; }
+    .buttons { margin: 20px; text-align: center; }
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    iframe {
+      display: block;
+      margin: 20px auto;
+      width: 80%;
+      height: 600px;
+      border: 1px solid #ccc;
+    }
+    .form-container {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-container input, .form-container select {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-container input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    /* Spinner */
+    #spinner {
+      display: none;
+      margin: 20px auto;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #4CAF50;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+
+<h1>Worksheet Preview</h1>
+
+<div class="buttons">
+  <a href="/download/worksheet_generated.pdf">Download PDF</a>
+  <a href="/download/worksheet_generated.tex">Download TEX</a>
+</div>
+
+<iframe src="/view/worksheet_generated.pdf"></iframe>
+
+<!-- Spinner while generating new worksheet -->
+<div id="spinner"></div>
+
+<!-- New Form to Generate Another Worksheet -->
+<div class="form-container">
+  <h2>Create Another Worksheet</h2>
+  <form id="worksheetForm" action="/" method="post">
+      <label>Subject:</label>
+      <input type="text" name="subject" required>
+
+      <label>Grade:</label>
+      <input type="text" name="grade" required>
+
+      <label>Difficulty:</label>
+      <select name="difficulty" required>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+      </select>
+
+      <label>Number of Questions:</label>
+      <input type="number" name="num_questions" min="1" required>
+
+      <label>Topic Focus:</label>
+      <input type="text" name="topic_focus">
+
+      <label>Number of Graphs:</label>
+      <input type="number" name="graphs" min="0" required>
+
+      <input type="submit" value="Generate New Worksheet">
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('worksheetForm');
+  const spinner = document.getElementById('spinner');
+
+  form.addEventListener('submit', function() {
+    spinner.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
