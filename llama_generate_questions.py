@@ -13,11 +13,11 @@ Focus on basic recall, simple definitions, or basic problem-solving.
 Avoid multi-step logic, and keep questions straightforward.
 """
     general_medium = """
-Focus on applying concepts, basic reasoning, and short calculations.
+Focus on applying concepts, basic reasoning, and short questions.
 Include simple multi-step problems or minor critical thinking.
 """
     general_hard = """
-Focus on complex reasoning, multi-step problems, proofs, or advanced calculations.
+Focus on complex reasoning, multi-step problems, proofs, or advanced questions.
 Encourage critical thinking, analysis, and synthesis of ideas.
 """
 
